@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+html {
+  scroll-padding-top: 80px;
+}
+
+body {
+  @apply bg-base-900 text-text-primary font-body antialiased overflow-x-hidden;
+  background-image: radial-gradient(circle at 15% 10%, rgba(59,130,246,0.08), transparent 35%),
+    radial-gradient(circle at 85% 25%, rgba(168,85,247,0.08), transparent 35%);
+}
+
+::selection {
+  background: rgba(139, 92, 246, 0.35);
+  color: #fff;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0e1a;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #a855f7);
+  border-radius: 8px;
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.08];
+  }
+
+  .glass-hover {
+    @apply transition-all duration-300 hover:bg-white/[0.06] hover:border-white/[0.15];
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-blue via-accent-indigo to-accent-violet;
+  }
+
+  .gradient-border {
+    position: relative;
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#0f1420, #0f1420) padding-box,
+      linear-gradient(120deg, #3b82f6, #8b5cf6) border-box;
+  }
+
+  .section-padding {
+    @apply px-6 sm:px-10 lg:px-20 py-24;
+  }
+
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-accent-indigo;
+  }
+
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm text-white
+      bg-gradient-to-r from-accent-blue to-accent-purple
+      shadow-glow hover:shadow-glow-purple transition-all duration-300 hover:scale-[1.03];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm
+      glass glass-hover text-text-primary transition-all duration-300 hover:scale-[1.03];
+  }
+
+  .tag-pill {
+    @apply font-mono text-xs px-3 py-1 rounded-full border border-white/10 text-text-muted bg-white/[0.03];
+  }
+
+  /* Animated gradient border: rotates a conic gradient behind a solid inset
+     panel. Reuses the same blue -> indigo -> violet family as gradient-text
+     so it reads as one system, not a bolt-on effect. */
+  .gradient-border-anim {
+    position: relative;
+    isolation: isolate;
+  }
+  .gradient-border-anim::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--border-angle, 0deg), #3b82f6, #8b5cf6, #a855f7, #3b82f6);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    animation: border-spin 4s linear infinite;
+    z-index: -1;
+  }
+  .gradient-border-anim:hover::before,
+  .gradient-border-anim:focus-within::before {
+    opacity: 1;
+  }
+
+  /* Perspective wrapper for realistic 3D tilt cards (transform set inline via JS) */
+  .tilt-card {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+
+  /* Cursor glow: trails the real cursor, native pointer stays visible */
+  .cursor-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.55), rgba(59, 130, 246, 0.15) 60%, transparent 70%);
+    filter: blur(2px);
+    mix-blend-mode: screen;
+    will-change: transform;
+  }
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-spin {
+  to { --border-angle: 360deg; }
+}
+
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate3d(-5%, -8%, 0) scale(1); }
+  50% { transform: translate3d(8%, 6%, 0) scale(1.15); }
+}
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate3d(6%, 4%, 0) scale(1.1); }
+  50% { transform: translate3d(-8%, -6%, 0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

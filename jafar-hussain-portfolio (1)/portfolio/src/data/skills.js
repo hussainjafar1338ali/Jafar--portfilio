@@ -1,0 +1,85 @@
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaBootstrap,
+  FaNodeJs,
+  FaPython,
+  FaJava,
+  FaGitAlt,
+  FaGithub,
+  FaCrosshairs,
+} from "react-icons/fa";
+
+import {
+  SiTailwindcss,
+  SiExpress,
+  SiMongodb,
+  SiMysql,
+  SiCplusplus,
+  SiTensorflow,
+  SiOpencv,
+  SiNumpy,
+  SiPandas,
+  SiScikitlearn,
+  SiPostman,
+} from "react-icons/si";
+
+import { TbBrain } from "react-icons/tb";
+
+export const skillGroups = [
+  {
+    title: "Frontend",
+    skills: [
+      { name: "HTML", icon: FaHtml5 },
+      { name: "CSS", icon: FaCss3Alt },
+      { name: "JavaScript", icon: FaJs },
+      { name: "React", icon: FaReact },
+      { name: "Tailwind CSS", icon: SiTailwindcss },
+      { name: "Bootstrap", icon: FaBootstrap },
+    ],
+  },
+  {
+    title: "Backend",
+    skills: [
+      { name: "Node.js", icon: FaNodeJs },
+      { name: "Express.js", icon: SiExpress },
+    ],
+  },
+  {
+    title: "Database",
+    skills: [
+      { name: "MongoDB", icon: SiMongodb },
+      { name: "MySQL", icon: SiMysql },
+    ],
+  },
+  {
+    title: "Programming",
+    skills: [
+      { name: "Python", icon: FaPython },
+      { name: "C++", icon: SiCplusplus },
+      { name: "Java", icon: FaJava },
+    ],
+  },
+  {
+    title: "AI / ML",
+    skills: [
+      { name: "TensorFlow", icon: SiTensorflow },
+      { name: "OpenCV", icon: SiOpencv },
+      { name: "YOLO", icon: FaCrosshairs },
+      { name: "CNN", icon: TbBrain },
+      { name: "NumPy", icon: SiNumpy },
+      { name: "Pandas", icon: SiPandas },
+      { name: "Scikit-learn", icon: SiScikitlearn },
+    ],
+  },
+  {
+    title: "Tools",
+    skills: [
+      { name: "Git", icon: FaGitAlt },
+      { name: "GitHub", icon: FaGithub },
+      { name: "Postman", icon: SiPostman },
+    ],
+  },
+];
