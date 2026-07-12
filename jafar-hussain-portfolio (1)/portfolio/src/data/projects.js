@@ -8,9 +8,9 @@ export const projects = [
       'A computer vision system that detects road accidents from live CCTV/RTSP feeds in real time and triggers automated SMS alerts within the "golden hour" to speed up emergency response.',
     tech: ['YOLOv8', 'CNN', 'OpenCV', 'Python', 'Twilio', 'Flask'],
     category: 'AI/ML',
-    github: 'https://github.com/jafarhussain/road-accident-detection',
-    demo: '#',
-    image: 'accident',
+    github: 'https://github.com/hussainjafar1338ali/AI-Based-Accident-Detection-System',
+    demo: ' /acciden detection.mp4',
+    image: 'accident-demo.png',
     featured: true,
   },
   {
